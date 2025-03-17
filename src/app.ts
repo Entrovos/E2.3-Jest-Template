@@ -1,9 +1,11 @@
 import { database } from "./model";
+export { database };
 
 interface Pokemon {
 	name: string;
 	type: string;
 }
+
 /**
  * Fetches and logs the current list of Pokémon.
  * @returns a Promise<Pokemon[]>
@@ -11,6 +13,12 @@ interface Pokemon {
 export async function fetchPokemon(): Promise<Pokemon[]> {
 	console.log(database);
 	return database;
+}
+
+export async function fetchPokemonWithError(): Promise<never> {
+	{
+		return Promise.reject(new Error("Failed to fetch Pokemon"));
+	}
 }
 
 /**
